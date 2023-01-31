@@ -44,7 +44,6 @@ struct AHO {
                 trie[index].to[nextNode] = ++ptr; // make a new pointer from the current index to the new added vertex
             }
             index = trie[index].to[nextNode];
-
         }
         trie[index].counter += 1; // indicates that a new string finished at `index`
     }
