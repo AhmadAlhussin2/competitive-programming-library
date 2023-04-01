@@ -23,8 +23,10 @@ __NOTE :__ the full code can be found inside `main.cpp` file.
     - otherwise, we need to keep the left side as it is and split the right size. However, since we kept all the left child and the root, we have to decrease $idx$ when going to the right child of the current node.
 
     - return the result of the split and the current node.
-
-    ```cpp
+    
+    The code will look loke the following:
+    
+ ```cpp
     pair<item* , item*> split(item *&node, int idx)
     {
         if (node == nullptr)
@@ -46,7 +48,7 @@ __NOTE :__ the full code can be found inside `main.cpp` file.
             return {node, ret.second};
         }
     }
-    ```
+ ```
 
 - ##  merge function
 
@@ -58,7 +60,7 @@ __NOTE :__ the full code can be found inside `main.cpp` file.
 
     - otherwise, the second node is the parent of the first node, and set the first node to be the left child of the second node.
 
-    ```cpp
+  ```cpp
     item *merge(item *L, item *R)
     {
         if (L == nullptr)
@@ -78,7 +80,7 @@ __NOTE :__ the full code can be found inside `main.cpp` file.
             return R;
         }
     }
-    ```
+  ```
 
 Split and merge functions provide everything we need for treaps. The following sections give some cases of using these functions:
 
@@ -88,7 +90,7 @@ Split and merge functions provide everything we need for treaps. The following s
 
     Moreover, we nned to add propagating mechanism to our treap. To get more familiar with propagating you can check segment tree with lazy propagation. The propagation for split will look like the following:
 
-    ```cpp
+  ```cpp
     void push(item *&parent, item *&node,int type)
     {
         if (node == nullptr)
@@ -106,7 +108,7 @@ Split and merge functions provide everything we need for treaps. The following s
             node->rev = 0;
         }
     }
-    ```
+  ```
 
     To do any operation with a segement in the treap, we can simply cut the treap to isolate this segment, and do any operation we want with this segment. Examples of such operations:
 
@@ -122,7 +124,7 @@ Split and merge functions provide everything we need for treaps. The following s
     
     To have a better idea of such operators we can take a look at reversing a segment code, the code is as simple as the following:
 
-    ```cpp
+  ```cpp
     void reverseSegment(int l, int r)
     {
         pair<item* , item*> part1 = split(root, l);
@@ -130,7 +132,7 @@ Split and merge functions provide everything we need for treaps. The following s
         part2.first->rev ^= 1;
         root = merge(part1.first, merge(part2.first, part2.second));
     }
-    ```
+  ```
 
 ## Practice problems
 
