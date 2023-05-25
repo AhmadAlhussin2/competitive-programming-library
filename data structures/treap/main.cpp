@@ -168,17 +168,22 @@ private:
             part2.first->rev ^= 1;
         root = merge(part1.first, merge(part2.first, part2.second));
     }
-    int getTheKthElement(item *&node, int k)
-    {
-        if (getSum(node->left) < k && (getSum(node) - getSum(node->right)) >= k)
-            return node->key;
-        if (getSum(node->left) >= k)
-        {
-            return getTheKthElement(node->left, k);
+//    int getTheKthElement(item* &node,int k){
+//        if (getSum(node->left)<k&&(getSum(node)-getSum(node->right))>=k)return node->key;
+//        if (getSum(node->left)>=k){
+//            return getTheKthElement(node->left,k);
+//        }
+//        else {
+//            return getTheKthElement(node->right,k-(getSum(node)-getSum(node->right)));
+//        }
+//    }
+    int getTheKthElement(item* &node,int k){
+        if (getSum(node->left)<k&&(getSum(node)-getSum(node->right))>=k)return node->key;
+        if (getSum(node->left)>=k){
+            return getTheKthElement(node->left,k);
         }
-        else
-        {
-            return getTheKthElement(node->right, k - (getSum(node) - getSum(node->right)));
+        else {
+            return getTheKthElement(node->right,k-(getSum(node)-getSum(node->right)));
         }
     }
 
